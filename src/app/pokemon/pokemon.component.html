@@ -1,0 +1,48 @@
+<div class="header">Kanto Pokemon</div>
+
+<ul class="mainWrapper" *ngIf="!hideMain">
+  <li
+    *ngFor="let pokemon of pokemonList"
+    class="card"
+    (click)="cardClicked(pokemon.name)"
+  >
+    <div class="imgContainer">
+      <img [src]="pokemon.image" />
+    </div>
+    <p class="name">{{ pokemon.name }}</p>
+    <div class="cardDetails">
+      <p>#{{ pokemon.id }}</p>
+      <p>Weight: {{ pokemon.weight }}</p>
+      <p>Height: {{ pokemon.height }}</p>
+      <li *ngFor="let type of pokemon.types">{{ type }}</li>
+    </div>
+  </li>
+</ul>
+
+<div *ngIf="showRequest" class="chosen">
+  <div class="pop_up">
+    <p>Do you want to select {{ chosen?.name }}</p>
+    <img [src]="chosen?.image" alt="" />
+    <div class="buttons">
+      <button class="cancel" (click)="cancel()">Cancel</button>
+      <button class="ok" (click)="display()">Ok</button>
+    </div>
+  </div>
+</div>
+
+<div class="newCompWrapper" *ngIf="hideMain">
+  <li class="card">
+    <div class="imgContainer">
+      <img [src]="chosen?.image" />
+    </div>
+    <p class="name">{{ chosen.name }}</p>
+    <div class="cardDetails">
+      <p>#{{ chosen.id }}</p>
+      <p>Weight: {{ chosen.weight }}</p>
+      <p>Height: {{ chosen.height }}</p>
+      <li *ngFor="let type of chosen.types">{{ type }}</li>
+    </div>
+  </li>
+
+  <button class="back" (click)="goBack()">All</button>
+</div>
